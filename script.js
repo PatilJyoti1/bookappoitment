@@ -35,8 +35,24 @@ function addAppointment(event) {
   document.getElementById('bookingForm').reset();
 }
 
+// Function to delete an appointment
+function deleteAppointment(index) {
+  // Remove the appointment from the array
+  appointments.splice(index, 1);
+  
+  // Save the updated appointments to LocalStorage
+  saveAppointments();
+  
+  // Clear the appointments list on the screen
+  const appointmentsList = document.getElementById('appointments');
+  appointmentsList.innerHTML = '';
+  
+  // Display the remaining appointments on the screen
+  appointments.forEach(displayAppointment);
+}
+
 // Function to display an appointment on the screen
-function displayAppointment(appointment) {
+function displayAppointment(appointment, index) {
   const appointmentsList = document.getElementById('appointments');
   
   const listItem = document.createElement('li');
@@ -44,6 +60,7 @@ function displayAppointment(appointment) {
     <strong>Name:</strong> ${appointment.name}<br>
     <strong>Email:</strong> ${appointment.email}<br>
     <strong>Phone:</strong> ${appointment.phone}<br>
+    <button onclick="deleteAppointment(${index})">Delete</button>
     <hr>
   `;
   
@@ -54,6 +71,5 @@ function displayAppointment(appointment) {
 document.getElementById('bookingForm').addEventListener('submit', addAppointment);
 
 // Display existing appointments on page load
-appointments.forEach(appointment => {
-  displayAppointment(appointment);
-});
+appointments.forEach(displayAppointment);
+
