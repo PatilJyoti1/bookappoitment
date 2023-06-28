@@ -83,7 +83,7 @@ function editAppointment(index) {
   appointments.forEach(displayAppointment);
 }
 
-// Function to display an appointment on the screen
+// Function to display an appointment on the screenls -la
 function displayAppointment(appointment, index) {
   const appointmentsList = document.getElementById('appointments');
 
